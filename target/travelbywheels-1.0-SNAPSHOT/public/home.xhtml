@@ -1,0 +1,157 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/restricted/template.xhtml">
+
+    <ui:define name="content">
+        <h:form id="journeyForm">
+            <div class="layout-portlets-box ui-fluid">
+                <div class="Container100 Responsive100">
+                    <div class="ContainerIndent">
+                        <h1 class="BigTopic">Plan Your Journey</h1>
+                        <div class="travelbywheels-override">
+                            <p:messages id="msg" autoUpdate="true" showSummary="true" showDetail="false" ></p:messages>
+                            <p:panelGrid style="width:100%; border:0px !important; background:none;" styleClass="ui-panelgrid-blank">
+                                <p:row>
+                                    <p:column>
+                                        <p:inputText value="#{planJourneyBean.fromCityName}" placeholder="From City Name" styleClass="Container80 Fnone MarAuto Fs18" required="true" label="From City Name"/>
+                                    </p:column>
+                                    <p:column>
+                                        <p:calendar value="#{planJourneyBean.departureDateTime}" placeholder="Departure DateTime" styleClass="Container80 Fnone MarAuto Fs18" required="false" label="Departure DateTime" pattern="MM/dd/yyyy HH:mm:ss"/>
+                                    </p:column>
+                                    <p:column>
+                                        <p:inputText value="#{planJourneyBean.toCityName}" placeholder="To City Name" styleClass="Container80 Fnone MarAuto Fs18" required="false"/>
+                                    </p:column>
+                                    <p:column>
+                                        <p:calendar  value="#{planJourneyBean.returnDateTime}" placeholder="Reutrn DateTime" pattern="MM/dd/yyyy HH:mm:ss" styleClass="Container80 Fnone MarAuto Fs18" required="false"/>
+                                    </p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column colspan="4">
+                                        <p:commandLink id="moreLessFormLink" value="Less" onclick="toggleForm('true');" />
+                                    </p:column>
+                                </p:row>
+                                <p:row id="additionalFormR1">
+                                    <p:column>
+                                        <p:inputText value="#{planJourneyBean.noOfPassengers}" placeholder="Number of Passengers" styleClass="Container80 Fnone MarAuto Fs18" required="false"/>
+                                    </p:column>
+                                    <p:column>
+                                        <p:panelGrid value="#{planJourneyBean.isAcNonAcNeeded}" style="width:100%; border:0px !important; background:none;" styleClass="ui-panelgrid-blank Container80 Fnone MarAuto Fs18" required="false">
+                                            <p:selectOneRadio layout="responsive" columns="2">
+                                                <f:selectItem itemLabel="AC" itemValue="AC" />
+                                                <f:selectItem itemLabel="NonAC" itemValue="NonAC" />
+                                            </p:selectOneRadio>
+                                        </p:panelGrid>
+                                    </p:column>
+                                    <p:column colspan="2">
+                                        <p:panelGrid style="width:100%; border:0px !important; background:none;" styleClass="ui-panelgrid-blank Container80 Fnone MarAuto Fs18" required="false">
+                                            <p:selectManyCheckbox layout="responsive" columns="2">
+                                                <f:selectItem itemLabel="Luggage Carrier" itemValue="Luggage Carrier" />
+                                                <f:selectItem itemLabel="Sound System" itemValue="Sound System" />
+                                            </p:selectManyCheckbox>
+                                        </p:panelGrid>
+                                    </p:column>
+                                </p:row>
+
+                                <p:row id="additionalFormR2">
+                                    <p:column colspan="4">
+                                        <p:inputTextarea value="#{planJourneyBean.specialRequest}" placeholder="Special Request" styleClass="Container80 Fnone MarAuto Fs18" required="false"/>
+                                    </p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column colspan="4">
+                                        <p:commandButton value="Get Me Quotes" style="width: auto" action="#{planJourneyBean.postJourney}"></p:commandButton>
+                                    </p:column>
+                                </p:row>
+                            </p:panelGrid>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </h:form>
+        <div class="layout-portlets-box">
+            <div class="Container100 ui-fluid">
+                <div class="ContainerIndent">
+                    <h2 class="BigTopic">How It Works</h2>
+                    <p:panel header="Panel" footer="Movie Details" style="margin-top:20px">
+                        <p:panelGrid columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" layout="grid" styleClass="ui-panelgrid-blank">
+                            <h:outputText value="IMAGE" />
+                            <h:outputText
+                                    value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+                                His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+                                Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,
+                                but given to ruthless violence whenever anything stands against the good of the family." />
+                        </p:panelGrid>
+                    </p:panel>
+                </div>
+            </div>
+        </div>
+
+        <div class="layout-portlets-box">
+            <div class="Container100 ui-fluid">
+                <div class="ContainerIndent">
+                    <h2 class="BigTopic">About TravelByWheels</h2>
+                    <p:accordionPanel style="margin-top:20px">
+                        <p:tab title="Godfather Part I">
+                            <p:panelGrid columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" layout="grid" styleClass="ui-panelgrid-blank">
+                                <h:outputText value="IMAGE" />
+                                <h:outputText
+                                        value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+                                    His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+                                    Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,
+                                    but given to ruthless violence whenever anything stands against the good of the family." />
+                            </p:panelGrid>
+                        </p:tab>
+                        <p:tab title="Godfather Part II">
+                            <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank">
+                                <h:outputText value="IMAGE" />
+                                <h:outputText value="Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather, parallels the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's depiction of the dark side of the American dream.
+                                              In the early 1900s, the child Vito flees his Sicilian village for America after the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing brood in Little Italy,
+                                              killing the local Black Hand Fanucci after he demands his customary cut of the tyro's business. With Fanucci gone, Vito's communal stature grows." />
+                            </p:panelGrid>
+                        </p:tab>
+                        <p:tab title="Godfather Part III">
+                            <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank">
+                                <h:outputText value="IMAGE" />
+                                <h:outputText value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family.
+                                              Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate." />
+                            </p:panelGrid>
+                        </p:tab>
+                    </p:accordionPanel>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+
+            function toggleForm(isCalledFromLink){
+                var toggleSpeed = 'slow';
+                if(isCalledFromLink == 'false'){
+
+                    toggleSpeed = 'fast';
+                }
+
+                $('#journeyForm\\:additionalFormR1').fadeToggle(toggleSpeed);
+                $('#journeyForm\\:additionalFormR2').fadeToggle(toggleSpeed);
+                if (document.getElementById('journeyForm:moreLessFormLink').innerText == 'More') {
+                    document.getElementById('journeyForm:moreLessFormLink').innerText = 'Less'
+                } else {
+                    document.getElementById('journeyForm:moreLessFormLink').innerText = 'More'
+                };
+
+                return false;
+            }
+
+            toggleForm('false');
+
+        </script>
+
+    </ui:define>
+</ui:composition>
+

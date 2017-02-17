@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    </f:facet>
+    <title>PrimeFaces Spark</title>
+    <h:outputScript name="js/layout.js" library="spark-layout" />
+
+    <h:outputText value="&lt;!--[if gte IE 9]&gt;" escape="false" />
+    <style type="text/css">
+        /* styles for IE 9 */
+    </style>
+    <h:outputText value="&lt;![endif]--&gt;" escape="false" />
+
+    <ui:insert name="head" />
+</h:head>
+
+<h:body>
+
+    <h:form id="loginForm">
+        <div id="layout-portlets-cover">
+            <div class="other-pages-box Container40 Responsive50 MarAuto Fnone TexAlCenter ShadowGray MarTop10"
+                 style="margin-top:5%; background-image:url(#{resource['spark-layout:images/loginpageillust.svg']}); background-repeat:no-repeat; background-position:center; background-size:cover;">
+                <p:outputPanel id="loginFormPanel">
+                <div class="Container90 Fnone MarAuto TexAlCenter">
+                    <div class="EmptyBox50"></div>
+                    <h:graphicImage name="images/LOGO.svg" library="spark-layout" styleClass="MarAuto MarTop20 MarBot10"/>
+                    <div class="EmptyBox20"></div>
+                    <div align="left">
+                    <p:messages id="msg" autoUpdate="true" showSummary="true" showDetail="false" ></p:messages>
+                    </div>
+                    <p:inputText id="email" value="#{loginRegisterBean.email}" placeholder="Email" styleClass="Container80 Fnone MarAuto Fs18" required="true" label="Email">
+                        <p:ajax event="blur" update="msg email" listener="#{loginRegisterBean.checkIsNewUser}" />
+                        <f:validator validatorId="custom.emailValidator" />
+                    </p:inputText>
+                    <p:message id="emailMsg" for="email" display="tooltip"/>
+                    <div class="EmptyBox10"></div>
+                    <p:password id="password" value="#{loginRegisterBean.password}" placeholder="Password" styleClass="Container80 Fnone MarAuto Fs18" required="true" label="Password">
+                        <p:ajax event="blur" update="msg" />
+                    </p:password>
+                    <p:message id="passwordMsg" for="password" display="tooltip" />
+                    <div class="EmptyBox20"></div>
+                    <div class="Container85 Fnone MarAuto softgray">
+                        <div class="EmptyBox5"></div>
+                        <p:selectBooleanCheckbox value="#{loginRegisterBean.iAmNewUser}" itemLabel="I Am A New User">
+                            <p:ajax update="msg email emailMsg passwordMsg submitButton" listener="#{loginRegisterBean.checkIsNewUser}" />
+                        </p:selectBooleanCheckbox>
+                    </div>
+                    <div class="EmptyBox30"></div>
+                    <p:commandButton  id="submitButton" value="#{loginRegisterBean.submitButtonValue}" styleClass="Fs16" action="#{loginRegisterBean.login}" update="loginFormPanel"></p:commandButton>
+                    <div class="EmptyBox10"></div>
+                    <div class="Seperator"></div>
+                    <div class="EmptyBox10"></div>
+                    <p:button  value="Forgot Password ?" styleClass="Fs16 RedButton" href="dashboard.xhtml"></p:button>
+                    <p:button  value="Contact Admin ?" styleClass="Fs16 OrangeButton" href="dashboard.xhtml"></p:button>
+                    <div class="EmptyBox50"></div>
+                </div>
+                </p:outputPanel>
+            </div>
+        </div>
+
+        <h:outputStylesheet name="css/core-layout.css" library="spark-layout" />
+        <h:outputStylesheet name="css/font-awesome.css" library="spark-layout" />
+        <h:outputStylesheet name="css/animate.css" library="spark-layout" />
+        <h:outputStylesheet name="css/spark-layout.css" library="spark-layout" />
+        <input type="hidden"
+               name="${_csrf.parameterName}"
+               value="${_csrf.token}"/>
+    </h:form>
+    <script type="text/javascript">
+        /**
+         * Faces Validator
+         */
+        PrimeFaces.validator['custom.emailValidator'] = {
+
+            pattern: /\S+@\S+/,
+
+            validate: function(element, value) {
+                //use element.data() to access validation metadata, in this case there is none.
+                if(!this.pattern.test(value)) {
+                    throw {
+                        summary: 'Validation Error',
+                        detail: value + ' is not a valid email.'
+                    }
+                }
+            }
+        };
+
+    </script>
+</h:body>
+</html>

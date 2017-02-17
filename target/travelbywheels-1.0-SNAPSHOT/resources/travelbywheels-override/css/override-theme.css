@@ -1,0 +1,43 @@
+/* Override css of park theme wherever needed into this css file
+* Mohsin
+*/
+
+/*Style For DataTable ------------------------------------------------------------------------------------- */
+
+/*.travelbywheels-override-ui-datatable table tbody tr td {*/
+    /*border: none;*/
+    /*color: inherit;*/
+/*}*/
+
+/*.travelbywheels-override-ui-panel {*/
+    /*border: none;*/
+    /*background-color: inherit;*/
+    /*font-family: inherit;*/
+    /*color: inherit;*/
+/*}*/
+
+/*.travelbywheels-override-ui-datatable-td table tbody td {*/
+    /*padding: 0px 0px !important;*/
+    /*color: inherit;*/
+/*}*/
+
+/*.travelbywheels-override-ui-datatable-auto table {*/
+    /*table-layout: auto;*/
+/*}*/
+
+.travelbywheels-override .ui-datatable table {
+    table-layout: auto;
+}
+
+.travelbywheels-override .ui-panelgrid tbody tr td {
+    border: none !important;
+}
+
+.ui-datatable .travelbywheels-override table tbody tr td {
+    border: none;
+}
+
+.travelbywheels-override .ui-panel {
+    border: none;
+    background: inherit;
+}

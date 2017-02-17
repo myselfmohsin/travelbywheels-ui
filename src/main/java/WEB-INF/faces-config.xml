@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+    
+    <name>primefaces-spark</name>
+    
+    <component>
+        <component-type>org.primefaces.component.SparkMenu</component-type>
+        <component-class>org.primefaces.spark.component.menu.SparkMenu</component-class>
+    </component>
+    
+    <render-kit>
+        <renderer>
+            <component-family>org.primefaces.component</component-family>
+            <renderer-type>org.primefaces.component.SparkMenuRenderer</renderer-type>
+            <renderer-class>org.primefaces.spark.component.menu.SparkMenuRenderer</renderer-class>
+        </renderer>
+    </render-kit>
+
+    <application>
+        <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+        <locale-config>
+            <default-locale>en</default-locale>
+        </locale-config>
+        <message-bundle>
+            JSFMessage
+        </message-bundle>
+
+    </application>
+
+    <navigation-rule>
+        <from-view-id>/public/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>correct</from-outcome>
+            <to-view-id>/secure/travellers/traveller-home.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/public/home.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>sample</from-outcome>
+            <to-view-id>/public/sample.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>forms</from-outcome>
+            <to-view-id>/public/forms.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>data</from-outcome>
+            <to-view-id>/public/data.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datatable</from-outcome>
+            <to-view-id>/public/datatable.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>panel</from-outcome>
+            <to-view-id>/public/panel.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>overlay</from-outcome>
+            <to-view-id>/public/overlay.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>menu</from-outcome>
+            <to-view-id>/public/menu.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>messages</from-outcome>
+            <to-view-id>/public/messages.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>file</from-outcome>
+            <to-view-id>/public/file.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>misc</from-outcome>
+            <to-view-id>/public/misc.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>empty-page</from-outcome>
+            <to-view-id>/public/empty-page.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/public/login.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/public/error.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>404</from-outcome>
+            <to-view-id>/public/404.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>access-denied</from-outcome>
+            <to-view-id>/public/access-denied.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>documentation</from-outcome>
+            <to-view-id>/public/documentation.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>font-icons</from-outcome>
+            <to-view-id>/public/font-icons.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+</faces-config>
